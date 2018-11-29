@@ -1,0 +1,15 @@
+.rectangle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+
+    margin: 15px;
+
+    background-color: darkgrey;
+}
+
+.rectangle p {
+    margin: 0;
+}
