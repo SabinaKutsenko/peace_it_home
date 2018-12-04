@@ -1,0 +1,23 @@
+.todo-list-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+    border-top: 1px solid;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.todo-list-wrapper input {
+    width: 500px;
+}
+.todo-list-wrapper ul {
+    list-style: decimal;
+}
+.todo-list-wrapper li * {
+    display: inline-block;
+}
+.todo-list-wrapper li button {
+    margin-left: 15px;
+}
+
