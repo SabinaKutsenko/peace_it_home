@@ -1,0 +1,79 @@
+/*************** Variables*/
+@tablet: 768px; /* @max768: ~"(max-width: 768px)";  @media @max768 {} */
+@mobile: 500px;
+
+@widthProduct: 180px;
+@padding15: 15px;
+@margin15: 15px;
+
+@bold: 600;
+
+/*************** Mixins*/
+#colors() {
+	dark: rgba(0, 0, 0, 0.8);
+	light: rgba(255, 255, 255, 1);
+}
+.transition {
+	-webkit-transition: all 0.3s ease-out 0.02s;
+	-moz-transition: all 0.3s ease-out 0.02s;
+	-o-transition: all 0.3s ease-out 0.02s;
+	transition: all 0.3s ease-out 0.02s;
+}
+.borderProduct {
+	border: 1px solid #b8b8b8;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.background {
+	background-size: 15px;
+	background-color: rgba(208, 151, 161, 0.45);
+	background-position: top 5px center;
+	background-repeat: no-repeat;
+}
+.backgroundHover {
+	background-image: url(https://img.icons8.com/ios/1600/star.png);
+	background-color: rgba(0, 0, 255, 0.75);
+}
+.alignLeft {
+	text-align: left;
+}
+
+/*************** Start Styles*/
+.product {
+	width: @widthProduct;
+	padding: @padding15;
+	margin: @margin15;
+	color: #colors[dark];
+	.alignLeft();
+	.borderProduct();
+	.background();
+	.transition();
+	
+	&:hover {
+		.backgroundHover();
+		color: #colors[light];
+		&__btn {
+			color: #000!important;
+		}
+	}
+	
+	&__price {
+		font-size: 16px;
+		font-weight: @bold;
+	}
+	&__btn {
+		min-width: 65px;
+		&:nth-of-type(1) {
+			margin-right: 15px;
+		}
+	}
+
+	@media (max-width: @tablet) {
+		width: 50%;
+	}
+	@media (max-width: @mobile) {
+		width: 100%;
+	}
+	
+}

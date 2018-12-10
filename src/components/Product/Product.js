@@ -1,58 +1,29 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { /*func,*/ string, number, func, array } from "prop-types";
 
-import { number, string, object /*  bool, func, object, any*/ } from "prop-types";
-
-import "./Product.css";
+import classes from "./Product.less";
 
 class Product extends Component {
-	static propTypes = {
-		backgroundColor: object,
+	static propTypes= {
+		addProduct: func,
+		basket: array,
+		deleteProduct: func,
 		id: number,
 		name: string,
-		price: string,
-	}
-	static  defaultProps = {
-		id: 0,
-		name: "Empty",
-		price: "--",
-	}
-	state = {
-		buttonText: "Add",
-	}
-	addProduct = (event, buttonText) => {
-		/*console.log(event.target.value);
-		console.log(this.state.buttonText);*/
-		if (this.state.buttonText == "Add") {
-			this.setState({
-				buttonText: "Delete"
-			});
-		} else {
-			this.setState({
-				buttonText: "Add"
-			});
-		}
+		price: number
 	}
 
 	render() {
-		const { id, name, price, backgroundColor } = this.props; /*деструктуризация this.props.name и this.props.price*/
-		const { buttonText } = this.state;
-		return (
+		const { id, name, price, addProduct, deleteProduct, basket } = this.props;
+		const value = { id, name };
+		const disabled = (basket.findIndex((x) => x.id === id) === -1) ? "disabled" : "";
 
-			<div
-				style={
-					backgroundColor
-				} className={"product"}
-			>
-				{/*<span>{id}</span>*/}
-				<span>{name}</span>  {/*this.props-все пропсы переданные этому компоненту - передаем в апп.жс*/}
-				<span>{price}</span> {/*this.state-все стейты этого компонента*/}
-				{/*this.func - это ф-ция описанная внутри этого компонента*/}
-				<select type={"size"} >
-					<option value={"s"}>s</option>
-					<option value={"m"}>m</option>
-				</select>
-				<input type={"color"} />
-				<button onClick={this.addProduct} type="submit" value={id}>{buttonText} </button>
+		return (
+			<div className={classes.product} key={id}>
+				<h2>{name}</h2>
+				<div className={classes.productPrice}>$ {price}</div>
+				<button className={`${classes.productBtn} btn btn-success`} onClick={addProduct(value)} >Add</button>
+				<button className={`${classes.productBtn} btn btn-dark`}  disabled={disabled} onClick={deleteProduct(value)} >Delete</button>
 			</div>
 		);
 	}
