@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Route, Switch, withRouter } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import HomePageWithId from "./components/HomePageWithId/HomePageWithId";
-import Randomuser from "./components/Randomuser/Randomuser";
+import RandomUser from "./components/RandomUser/RandomUser";
 import About from "./components/About/About";
 
 
@@ -59,7 +59,7 @@ class App extends Component {
 							(props) => <HomePageWithId {...props}  post={posts[props.match.params.id - 1]} posts={posts} />
 						}
 					/>
-					<Route exact path={"/randomuser"} component={Randomuser} />
+					<Route exact path={"/randomuser"} component={RandomUser} />
 					<Route exact path={"/about"} component={About} />
 
 				</Switch>

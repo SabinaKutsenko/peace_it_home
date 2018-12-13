@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import classes from "./Randomuser.less";
+import classes from "./RandomUser.less";
 
-class Randomuser extends Component {
+class RandomUser extends Component {
 	state = {
 		user: {},
-		activeTitle: '',
+		activeTitle: "Hi, My name is",
 		activeValue: '',
 	}
 
@@ -20,7 +20,6 @@ class Randomuser extends Component {
 
 			this.setState({
 				user: {
-					gender: mainInfo.gender,
 					picture: mainInfo.picture.large,
 					nameFirst: mainInfo.name.first,
 					nameLast: mainInfo.name.last,
@@ -29,7 +28,8 @@ class Randomuser extends Component {
 					location: mainInfo.location.street,
 					phone: mainInfo.phone,
 					pass: mainInfo.login.password
-				}
+				},
+				activeValue: (`${mainInfo.name.first} ${mainInfo.name.last}`)
 			});
 		} catch (e) {
 			console.log(e);
@@ -43,12 +43,36 @@ class Randomuser extends Component {
 		});
 	}
 
+	renderList = (item) => {
+		const { activeLable } = this.state;
+
+		return (<li
+			key={item[0]}
+			className={(activeLable === item[1]) ? classes.active : ''}
+			onMouseOver={this.changeInfo({ lable: item[1], title: item[2], value: item[3] })}
+			data-label={item[1]}
+		        />);
+	}
+
 	render() {
-		const { user, activeTitle, activeValue, activeLable } = this.state;
+		const { user, activeTitle, activeValue } = this.state;
 		const { picture, nameFirst, nameLast, email, birthday, location, phone, pass } = user;
+		const list = [
+			[1, "name", "Hi, My name is", `${nameFirst} ${nameLast}`],
+			[2, "email", "My email address is", email],
+			[3, "birthday", "My birthday is", birthday],
+			[4, "location", "My address is", location],
+			[5, "phone", "My phone number is", phone],
+			[6, "pass", "My password is", pass],
+		];
+
+		if (!this.state.activeValue) {
+			console.log(" Please wait");
+			return null;
+		}
 
 		return (
-			<div className={`${classes.randomuserPage}`}>
+			<div className={`${classes.randomUserPage}`}>
 				<h1>RANDOM USER GENERATOR</h1>
 				<div className={`${classes.block} container`}>
 
@@ -57,44 +81,19 @@ class Randomuser extends Component {
 							<img src={picture} />
 						</div>
 						<div className={classes.detailsUserTitle}>
-							{ (activeTitle !== '') ? activeTitle : "Hi, My name is"}
+							{activeTitle}
 						</div>
 						<div className={classes.detailsUserValue}>
-							{ (activeValue !== '') ? activeValue : (`${nameFirst} ${nameLast}`) }
+							{activeValue}
 						</div>
 					</div>
 
 					<ul className={classes.valuesList}>
-						<li
-							className={(activeLable == "name")  ? classes.active : ''}
-							onMouseOver={this.changeInfo({ lable: "name", title: "Hi, My name is", value: `${nameFirst} ${nameLast}` })}
-							data-label="name"
-						/>
-						<li
-							className={(activeLable == "email")  ? classes.active : ''}
-							onMouseOver={this.changeInfo({ lable: "email", title: "My email address is", value: email })}
-							data-label="email" data-caps="false"
-						/>
-						<li
-							className={(activeLable == "birthday")  ? classes.active : ''}
-							onMouseOver={this.changeInfo({ lable: "birthday", title: "My birthday is", value: birthday })}
-							data-label="birthday"
-						/>
-						<li
-							className={(activeLable == "location") ? classes.active : ''}
-							onMouseOver={this.changeInfo({ lable: "location", title: "My address is", value: location })}
-							data-label="location"
-						/>
-						<li
-							className={(activeLable == "phone")  ? classes.active : ''}
-							onMouseOver={this.changeInfo({ lable: "phone", title: "My phone number is", value: phone })}
-							data-label="phone"
-						/>
-						<li
-							className={(activeLable == "pass")  ? classes.active : ''}
-							onMouseOver={this.changeInfo({ lable: "pass", title: "My password is", value: pass })}
-							data-label="pass" data-caps="false"
-						/>
+						{
+							list.map((item) => {
+								return this.renderList(item);
+							})
+						}
 					</ul>
 
 				</div>
@@ -103,4 +102,4 @@ class Randomuser extends Component {
 	}
 }
 
-export default Randomuser;
+export default RandomUser;
