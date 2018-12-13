@@ -1,0 +1,104 @@
+.borderRadius5 {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.horizontal_center {
+	position: relative;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+.active[data-label=name]{
+	background-position: 0 -96px;
+}
+.randomuserPage {
+	padding: 50px 15px;
+	text-align: center;
+	background-color: #2c2e31;
+	h1{
+		margin-bottom: 40px;
+		color: #fff;
+	}
+	.block {
+		background-color: #fff;
+		padding: 15px;
+		.borderRadius5();
+		.details {
+			
+			&__userPhoto {
+				position: relative;
+				background: #fff;
+				padding: 5px;
+				width: 162px;
+				height: 162px;
+				border-radius: 50%;
+				margin-bottom: 30px;
+				border: 1px solid rgba(0,0,0,.25);
+				.horizontal_center();
+				img {
+					width: 150px;
+					border-radius: 50%;
+				}
+			}
+			&__userTitle {
+				color: #999;
+				font-size: 18px;
+				margin: 0;
+			}
+			&__userValue {
+				color: #2c2e31;
+				font-size: 38px;
+				margin: 5px;
+				text-transform: capitalize;
+			}
+		}
+		.valuesList {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			float: left;
+			.horizontal_center();
+			li {
+				background-image: url(https://randomuser.me/img/card_icons.png);
+				cursor: pointer;
+				display: block;
+				width: 40px;
+				height: 48px;
+				float: left;
+				margin: 20px;
+				background-size: 378px;
+				background-position-y: -48px;
+				-webkit-transition: all .25s ease-out;
+				transition: all .25s ease-out;
+				/*&:hover{
+					background-position-y: -96px!important;
+				}*/
+			}
+			.active {
+				background-position-y: 96px!important;
+			}
+			
+			li[data-label=name] {
+				background-position: 0 -48px;
+			}
+			li[data-label=email] {
+				background-position: -68px -48px;
+			}
+			li[data-label=birthday] {
+				background-position: -135px -48px;
+			}
+			li[data-label=location] {
+				background-position: -203px -48px;
+			}
+			li[data-label=phone] {
+				background-position: -270px -48px;
+			}
+			li[data-label=pass] {
+				background-position: -338px -48px;
+			}
+			
+		}
+	}
+}
