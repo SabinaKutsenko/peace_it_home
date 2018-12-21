@@ -1,0 +1,24 @@
+@grey: #ccc;
+@blue: #203ca3;
+.linkStyle {
+    font-weight: bold;
+    color: @blue;
+    text-transform: uppercase;
+}
+.app {
+    padding-top: 50px;
+    font-size: 50px;
+    text-align: center;
+    
+    p {
+        font-size: 80px;
+    }
+    &__menu {
+        padding: 15px 0;
+        text-align: center;
+    }
+    &__menu a {
+        padding: 5px;
+        .linkStyle();
+    }
+}
